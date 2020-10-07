@@ -1,7 +1,7 @@
 {
-  "name": "parsetime",
+  "name": "@nend/time-strings",
   "version": "0.0.3",
-  "description": "Convert time strings into MS",
+  "description": "Convert descriptions of time into milliseconds or dates",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dxede/parse-time-descriptor.git"
+    "url": "git+https://github.com/dxede/time-strings.git"
   },
   "author": "@dxede",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dxede/parse-time-descriptor/issues"
+    "url": "https://github.com/dxede/time-strings/issues"
   },
-  "homepage": "https://github.com/dxede/parse-time-descriptor#readme",
+  "homepage": "https://github.com/dxede/time-strings#readme",
   "dependencies": {
     "@nend/utils": "^1.1.11",
     "release-it": "^14.0.4"
