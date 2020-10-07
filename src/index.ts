@@ -156,5 +156,5 @@ export default function convertTimeDescriptionToMS (timeString: string) {
   }
 
   return [MinsRGX, HoursRGX, DaysRGX]
-  .find(r => r.matches(timeString))?.convertStringToMilliseconds(timeString);
+    .find(r => r.matches(timeString))?.convertStringToMilliseconds(timeString);
 }
