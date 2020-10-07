@@ -1,4 +1,4 @@
-# Parse Time Descriptor
+# Time Strings
 
-A util library for parsing milliseconds from a time descriptor (i.e "2hrs 30mins").
+A util library for converting time descriptions (i.e "2hrs 30mins") into milliseconds or dates.
 
