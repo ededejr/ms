@@ -1,0 +1,1 @@
+{"version":3,"file":"time-resolvers.d.ts","sourceRoot":"","sources":["../src/time-resolvers.ts"],"names":[],"mappings":"AAEA,MAAM,WAAW,eAAe;IAC9B,IAAI,EAAE,MAAM,CAAC;IACb,OAAO,EAAE,CAAC,KAAK,EAAE,MAAM,EAAE,WAAW,CAAC,EAAE,MAAM,EAAE,MAAM,CAAC,EAAE;QAAC,CAAC,GAAG,EAAC,MAAM,GAAG,MAAM,CAAA;KAAC,KAAK,MAAM,CAAA;CAC1F;;;;AAED,wBAkEoC"}
