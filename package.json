@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dxede/parsetime.git"
+    "url": "git+https://github.com/dxede/parse-time-descriptor.git"
   },
   "author": "@dxede",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dxede/parsetime/issues"
+    "url": "https://github.com/dxede/parse-time-descriptor/issues"
   },
-  "homepage": "https://github.com/dxede/parsetime#readme",
+  "homepage": "https://github.com/dxede/parse-time-descriptor#readme",
   "dependencies": {
     "@nend/utils": "^1.1.11",
     "release-it": "^14.0.4"
