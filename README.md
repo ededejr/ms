@@ -1,2 +1,4 @@
-# parsetime
-A small util library to convert a time string into MS from now
+# Time Strings
+
+A util library for converting time descriptions (i.e "2hrs 30mins") into milliseconds or dates.
+
