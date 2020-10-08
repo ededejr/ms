@@ -135,7 +135,7 @@ export const AmPmRGX = new TimeStringRegex(
  * DaysRGX.matches('2days 30mins') => true
  */
 export const DaysRGX = new TimeStringRegex(
-  /^(?<days>\d+) *days(?: *(?:(?<hrs>\d{1,2}) *hrs)? *(?:(?<mins>[0-5]?[0-9]) *min(?:ute)?s?)?)?$/i,
+  /^(?<days>\d+) *days?(?: *(?:(?<hrs>\d{1,2}) *hrs)? *(?:(?<mins>[0-5]?[0-9]) *min(?:ute)?s?)?)?$/i,
   [
     TimeResolvers.days,
     TimeResolvers.hrs,
