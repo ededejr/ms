@@ -1,6 +1,6 @@
 {
   "name": "@ededejr/parse-time-string",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Convert descriptions of time into milliseconds or dates",
   "main": "index.js",
   "scripts": {
