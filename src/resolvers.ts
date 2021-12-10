@@ -1,4 +1,6 @@
-import { ONE_DAY, ONE_HOUR, ONE_MIN } from "@nend/utils/date";
+const ONE_MIN = 60 * 1000;
+const ONE_HOUR = 60 * ONE_MIN;
+const ONE_DAY = 24 * ONE_HOUR;
 
 export interface TimeDelineation {
   name: string,

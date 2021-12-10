@@ -1,7 +1,7 @@
-import convertTimeDescriptionToMS from '../index';
+import { parseTimeString } from '../index';
 
 function createBasicTest(input: string, expected: number | undefined, label?: string) {
-  test(label ? `${label}: "${input}"` : `"${input}"`, () => expect(convertTimeDescriptionToMS(input)).toBe(expected));
+  test(label ? `${label}: "${input}"` : `"${input}"`, () => expect(parseTimeString(input)).toBe(expected));
 }
 
 createBasicTest('1 min', 60000);

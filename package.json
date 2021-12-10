@@ -1,26 +1,25 @@
 {
-  "name": "@nend/time-strings",
+  "name": "@ededejr/parse-time-string",
   "version": "0.0.3",
   "description": "Convert descriptions of time into milliseconds or dates",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "release": "release-it",
+    "build:candidate": "tsc -p tsconfig.prod.json",
     "lint": "tslint src/**/*.ts",
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dxede/time-strings.git"
+    "url": "git+https://github.com/ededejr/parse-time-string.git"
   },
-  "author": "@dxede",
+  "author": "@ededejr",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dxede/time-strings/issues"
+    "url": "https://github.com/ededejr/parse-time-string/issues"
   },
-  "homepage": "https://github.com/dxede/time-strings#readme",
+  "homepage": "https://github.com/ededejr/parse-time-string#readme",
   "dependencies": {
-    "@nend/utils": "^1.1.11",
     "release-it": "^14.0.4"
   },
   "devDependencies": {
@@ -38,43 +37,32 @@
     }
   },
   "release-it": {
-    "hooks": {
-      "before:init": ["npm run lint", "npm test"],
-      "after:init": "npm run build"
-    },
     "git": {
-      "changlog": "",
-      "requireCleanWorkingDir": true,
-      "requireBranch": false,
-      "requireUpstream": true,
-      "requireCommits": false,
-      "addUntrackedFiles": false,
       "commit": true,
-      "commitMessage": "Release v${version}",
-      "commitArgs": [],
-      "tag": true,
-      "tagName": "v${version}",
-      "tagAnnotation": "Release v${version}",
-      "tagArgs": [],
-      "push": true,
-      "pushArgs": [
-        "--follow-tags"
-      ]
+      "commitMessage": "chore(release): release v${version}",
+      "changelog": "git log --pretty=format:\"* %s (%h)\" ${from}...${to}",
+      "tagAnnotation": "Release v${version}"
     },
     "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": false
+      "publish": false,
+      "publishPath": "build"
     },
     "plugins": {
       "@release-it/conventional-changelog": {
         "preset": "angular",
         "infile": "CHANGELOG.md"
       }
+    },
+    "hooks": {
+      "before:init": [
+        "npm run test",
+        "npm run build:candidate"
+      ],
+      "after:git:release": "cp package.json build/package.json && cp README.md build/README.md",
+      "after:release": "npm publish ./build"
     }
   },
   "publishConfig": {
-    "registry": "http://nend-home:4873"
+    "registry": "https://npm.pkg.github.com/"
   }
 }
