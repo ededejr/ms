@@ -68,57 +68,6 @@ class TimeStringRegex {
 }
 
 /**
- * Determine if a string matches the format seconds format.
- *
- * @example
- * SecsRGX('20s') => true
- * SecsRGX('300seconds`) => true
- * SecsRGX('3000secs') => true
- * SecsRGX('1second') => true
- * SecsRGX('1sec') => true
- *
- * @param time The time string to check.
- */
-export const SecsRGX = new TimeStringRegex(/^(?<secs>\d+)s(?:(ec|econd))?s?$/, [
-  TimeResolvers.secs,
-]);
-
-/**
- * Determine if a string matches the format minutes format.
- *
- * @example
- * MinsRGX('20mins') => true
- * MinsRGX('300mins`) => true
- * MinsRGX('3000mins') => false
- * MinsRGX('3min') => true
- * MinsRGX('3 mins') => true
- *
- * @param time The time string to check.
- */
-export const MinsRGX = new TimeStringRegex(/^(?<mins>\d{1,3})min(?:ute)?s?$/, [
-  TimeResolvers.mins,
-]);
-
-/**
- * Determine if a string matches the format an hour-minute format.
- *
- * Hours cannot be more than 99hrs, and minutes cannot be more than 59.
- *
- * @example
- * HoursRGX.matches('20mins') => false
- * HoursRGX.matches('2hrs 300mins`) => false
- * HoursRGX.matches('3000mins') => false
- * HoursRGX.matches('3hr') => true
- * HoursRGX.matches('3hrs 58mins') => true
- *
- * @param time The time string to check.
- */
-export const HoursRGX = new TimeStringRegex(
-  /(^(?<hrs>\d{1,2}) ?hrs?) *((?<mins>[0-5]?[0-9]) *min(?:ute)?s?)?$/,
-  [TimeResolvers.hrs, TimeResolvers.mins]
-);
-
-/**
  * Checks if a time string is in the format 10AM/10:30AM or 10PM/10:30PM.
  * Lowercase is okay for the AM/PM.
  *
@@ -136,7 +85,7 @@ export const AmPmRGX = new TimeStringRegex(
  * @param time The time string to check. 
  */
 export const StandardRGX = new TimeStringRegex(
-  /^(?:(?<yrs>\d+)\s*y(?:ears?)?)?\s*(?:(?<wks>\d+)\s*w(?:eeks?|ks)?)?\s*(?:(?<days>\d+)\s*d(?:ays?)?)?\s*(?:(?<hrs>\d+)\s*h(?:ours?)?)?\s*(?:(?<mins>\d+)\s*m(?:in(?:ute)?s?)?)?\s*(?:(?<secs>\d+)\s*s(?:ec(?:ond)?s?)?)?\s*(?:(?<ms>\d+)\s*m(?:ill(?:i)?second)?s?)?$/i,
+  /^(?:(?<yrs>\d+)\s*y(?:ears?)?)?\s*(?:(?<wks>\d+)\s*w(?:eeks?|ks)?)?\s*(?:(?<days>\d+)\s*d(?:ays?)?)?\s*(?:(?<hrs>\d+)\s*h(?:(r|our)s?)?)?\s*(?:(?<mins>\d+)\s*m(?:in(?:ute)?s?)?)?\s*(?:(?<secs>\d+)\s*s(?:ec(?:ond)?s?)?)?\s*(?:(?<ms>\d+)(?:\s*(ms|(?:(mill(?:i)?second)s?))))?$/i,
   [
     TimeResolvers.yrs,
     TimeResolvers.wks,
@@ -144,5 +93,6 @@ export const StandardRGX = new TimeStringRegex(
     TimeResolvers.hrs,
     TimeResolvers.mins,
     TimeResolvers.secs,
+    TimeResolvers.ms,
   ]
 );

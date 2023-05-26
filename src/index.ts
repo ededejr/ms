@@ -1,9 +1,17 @@
-import { AmPmRGX, MinsRGX, HoursRGX, DaysRGX, SecsRGX } from "./regexes";
+import { AmPmRGX, StandardRGX } from "./regexes";
 
 /**
- * Converts a time string such as "2hrs 30mins" to MS;
+ * Converts a time descriptor to milliseconds.
  *
- * @param str The string to convert to milliseconds.
+ * @param str The string to convert.
+ * 
+ * @example
+ * ms("30") => 30
+ * ms("30mins") => 1800000 
+ * ms("2hrs 30mins") => 9000000
+ * ms("2hrs 30mins 30secs") => 9030000
+ * ms("2hrs 30mins 30secs 30ms") => 9030030
+ * ms("2y 2w 2d 2h 2m 2s 2ms") => 64461722002
  */
 export function ms(str: TemplateStringsArray | string): number | undefined {
   const isTemplateString =
@@ -24,11 +32,32 @@ export function ms(str: TemplateStringsArray | string): number | undefined {
 
   input = input.trim().replace(/ /g, "");
 
-  if (AmPmRGX.matches(input)) {
-    return AmPmRGX.convertStringToMilliseconds(input);
+  if (input.length === 0) {
+    throw new Error("Invalid input. Cannot parse an empty string.");
   }
 
-  return [SecsRGX, MinsRGX, HoursRGX, DaysRGX]
-    .find((r) => r.matches(input))
-    ?.convertStringToMilliseconds(input);
+  const isNegative = input.startsWith("-");
+
+  if (isNegative) {
+    input = input.slice(1);
+  }
+
+  const handleNegative = (value: number) => (isNegative ? -value : value);
+
+  if (AmPmRGX.matches(input)) {
+    return handleNegative(AmPmRGX.convertStringToMilliseconds(input));
+  }
+
+  if (StandardRGX.matches(input)) {
+    return handleNegative(StandardRGX.convertStringToMilliseconds(input));
+  }
+
+  try {
+    const int = parseInt(input, 10);
+    return handleNegative(int);
+  } catch (error) {
+   // do nothing 
+  }
+
+  return undefined;
 }

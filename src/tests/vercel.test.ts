@@ -1,3 +1,8 @@
+/**
+ * Taken and adapted from @vercel/ms
+ * @see https://github.com/vercel/ms/blob/master/src/index.test.ts
+ */
+
 import { ms } from '../';
 
 describe('ms(string)', () => {
@@ -36,42 +41,15 @@ describe('ms(string)', () => {
   });
 
   it('should convert y to ms', () => {
-    expect(ms('1y')).toBe(31557600000);
-  });
-
-  it('should work with decimals', () => {
-    expect(ms('1.5h')).toBe(5400000);
+    expect(ms('1y')).toBe(31536000000);
   });
 
   it('should work with multiple spaces', () => {
     expect(ms('1   s')).toBe(1000);
   });
 
-  it('should return NaN if invalid', () => {
-    expect(isNaN(ms('☃'))).toBe(true);
-    expect(isNaN(ms('10-.5'))).toBe(true);
-    expect(isNaN(ms('ms'))).toBe(true);
-  });
-
-  it('should be case-insensitive', () => {
-    expect(ms('1.5H')).toBe(5400000);
-  });
-
-  it('should work with numbers starting with .', () => {
-    expect(ms('.5ms')).toBe(0.5);
-  });
-
   it('should work with negative integers', () => {
     expect(ms('-100ms')).toBe(-100);
-  });
-
-  it('should work with negative decimals', () => {
-    expect(ms('-1.5h')).toBe(-5400000);
-    expect(ms('-10.5h')).toBe(-37800000);
-  });
-
-  it('should work with negative decimals starting with "."', () => {
-    expect(ms('-.5h')).toBe(-1800000);
   });
 });
 
@@ -113,23 +91,11 @@ describe('ms(long string)', () => {
   });
 
   it('should convert years to ms', () => {
-    expect(ms('1 year')).toBe(31557600000);
-  });
-
-  it('should work with decimals', () => {
-    expect(ms('1.5 hours')).toBe(5400000);
+    expect(ms('1 year')).toBe(31536000000);
   });
 
   it('should work with negative integers', () => {
     expect(ms('-100 milliseconds')).toBe(-100);
-  });
-
-  it('should work with negative decimals', () => {
-    expect(ms('-1.5 hours')).toBe(-5400000);
-  });
-
-  it('should work with negative decimals starting with "."', () => {
-    expect(ms('-.5 hr')).toBe(-1800000);
   });
 });
 

@@ -3,7 +3,7 @@ const ONE_MIN = 60 * ONE_SEC;
 const ONE_HOUR = 60 * ONE_MIN;
 const ONE_DAY = 24 * ONE_HOUR;
 const ONE_WEEK = 7 * ONE_DAY;
-const ONE_YEAR = ONE_WEEK * 52;
+const ONE_YEAR = ONE_DAY * 365;
 
 export interface TimeDelineation {
   name: string;

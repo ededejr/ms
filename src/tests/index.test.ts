@@ -45,7 +45,6 @@ describe("minutes", () => {
 describe("hours and minutes", () => {
   createBasicTest('2hrs', 7200000);
   createBasicTest('2hrs 30mins', 9000000);
-  createBasicTest('2hrs 100 minutes', undefined, 'Undefined if minutes are more than 59');
 });
 
 describe("days", () => {
@@ -59,5 +58,7 @@ describe("days", () => {
 })
 
 describe("validity", () => {
-  createBasicTest('', undefined, 'Undefined if empty string');
+  test('should throw an error, when ms(undefined)', () => {
+    expect(() => ms(undefined)).toThrowError();
+  });
 })
