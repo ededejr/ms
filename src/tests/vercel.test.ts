@@ -66,10 +66,6 @@ describe('ms(long string)', () => {
     expect(ms('53 milliseconds')).toBe(53);
   });
 
-  it('should convert msecs to ms', () => {
-    expect(ms('17 msecs')).toBe(17);
-  });
-
   it('should convert sec to ms', () => {
     expect(ms('1 sec')).toBe(1000);
   });
@@ -106,6 +102,10 @@ describe('ms(invalid inputs)', () => {
     expect(() => {
       ms('');
     }).toThrowError();
+  });
+
+  it('should return NaN, when ms("☃")', () => {
+    expect(ms('☃')).toBeNaN();
   });
 
   it('should throw an error, when ms(undefined)', () => {

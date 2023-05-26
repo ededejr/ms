@@ -19,7 +19,7 @@ export function ms(str: TemplateStringsArray | string): number | undefined {
   const isString = typeof str === "string";
 
   if (!(isTemplateString || isString)) {
-    throw new Error("Invalid input. Expected a string or template string.");
+    throw new Error(errors.invalidInput);
   }
 
   let input = "";
@@ -33,7 +33,7 @@ export function ms(str: TemplateStringsArray | string): number | undefined {
   input = input.trim().replace(/ /g, "");
 
   if (input.length === 0) {
-    throw new Error("Invalid input. Cannot parse an empty string.");
+    throw new Error(errors.emptyString);
   }
 
   const isNegative = input.startsWith("-");
@@ -54,10 +54,21 @@ export function ms(str: TemplateStringsArray | string): number | undefined {
 
   try {
     const int = parseInt(input, 10);
+    
+    if (int.toString() !== input) {
+      throw new Error(errors.decimals);
+    }
+
     return handleNegative(int);
   } catch (error) {
    // do nothing 
   }
 
-  return undefined;
+  return NaN;
+}
+
+const errors = {
+  invalidInput: "Invalid input. Expected a string or template string.",
+  emptyString: "Invalid input. Cannot parse an empty string.",
+  decimals: "Invalid input. Cannot parse decimals.",
 }

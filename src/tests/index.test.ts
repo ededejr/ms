@@ -61,4 +61,16 @@ describe("validity", () => {
   test('should throw an error, when ms(undefined)', () => {
     expect(() => ms(undefined)).toThrowError();
   });
+
+  test('should return NaN when ms("☃")', () => {
+    expect(ms('☃')).toBeNaN();
+  });
+
+  test('should return NaN with decimals', () => {
+    expect(ms('1.5')).toBeNaN();
+  });
+
+  test('should return NaN with decimals and units', () => {
+    expect(ms('1.5s')).toBeNaN();
+  });
 })
