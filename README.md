@@ -19,14 +19,14 @@ ms("2hrs"); // 7200000
 ms("2hrs 30mins"); // 9000000;
 ```
 
-##### Days
+###### Days
 
 ```ts
 ms("10 days"); // 864000000
 ms("1 day 20hrs 40mins"); // 160800000
 ```
 
-##### AM/PM Times
+###### AM/PM Times
 
 ```ts
 ms("10AM"); // ms from now till the next time it will be 10AM
