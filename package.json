@@ -6,8 +6,7 @@
   "scripts": {
     "lint": "prettier --write **/*.{ts,json,md}",
     "lint:check": "prettier --check **/*.{ts,json,md}",
-    "package:benchmark": "npm run scripts:run benchmark",
-    "package:build": "tsup --format cjs,esm --dts && npm run package:prepare",
+    "package:build": "tsup --format cjs,esm --dts",
     "package:prepare": "npm run scripts:run prepare-dist",
     "prepare": "husky install",
     "release": "release-it",
@@ -80,6 +79,7 @@
         "npm run test",
         "npm run package:build"
       ],
+      "after:bump": "npm run package:prepare",
       "after:release": "npm publish ./dist"
     },
     "github": {
