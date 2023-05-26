@@ -1,6 +1,6 @@
 {
   "name": "@ededejr/ms",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Convert descriptions of time into milliseconds",
   "main": "index.js",
   "scripts": {
