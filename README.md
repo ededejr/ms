@@ -1,4 +1,4 @@
-# Parse Time String
+# ms
 
 A utility for converting time descriptions (i.e "2hrs 30mins") into milliseconds.
 
@@ -8,6 +8,10 @@ A utility for converting time descriptions (i.e "2hrs 30mins") into milliseconds
 import { ms } from '@ededejr/ms';
 
 ms('1 min') // 60000
+
+// Template literals are also supported
+
+ms`1 min` // 60000
 ```
 
 #### What can I parse?
