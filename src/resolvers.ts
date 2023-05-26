@@ -4,32 +4,38 @@ const ONE_HOUR = 60 * ONE_MIN;
 const ONE_DAY = 24 * ONE_HOUR;
 
 export interface TimeDelineation {
-  name: string,
-  resolve: (value: number, valueString?: string, groups?: {[key:string]: string}) => number
+  name: string;
+  resolve: (
+    value: number,
+    valueString?: string,
+    groups?: { [key: string]: string }
+  ) => number;
 }
 
 export default {
   secs: {
-    name: 'secs',
-    resolve: (value) => value * ONE_SEC
+    name: "secs",
+    resolve: (value) => value * ONE_SEC,
   },
   mins: {
-    name: 'mins',
-    resolve: (value) => value * ONE_MIN
+    name: "mins",
+    resolve: (value) => value * ONE_MIN,
   },
   hrs: {
-    name: 'hrs',
-    resolve: (value) => value * ONE_HOUR
+    name: "hrs",
+    resolve: (value) => value * ONE_HOUR,
   },
   days: {
-    name: 'days',
-    resolve: (value) => value * ONE_DAY
+    name: "days",
+    resolve: (value) => value * ONE_DAY,
   },
   indicator: {
-    name: 'indicator',
+    name: "indicator",
     resolve: (_, valueString, matchGroups) => {
       if (!valueString || !matchGroups) {
-        throw new Error('Cannot resolve indicator value without valueString and match groups');
+        throw new Error(
+          "Cannot resolve indicator value without valueString and match groups"
+        );
       }
 
       let { hrs } = matchGroups;
@@ -47,13 +53,15 @@ export default {
       const currentHour = now.getHours();
       const currentMinute = now.getMinutes();
 
-      function getTimeTillTomorrow () {
+      function getTimeTillTomorrow() {
         const minsToMidnight = (60 - currentMinute) * ONE_MIN;
-        const hoursTillMidnight = (24 - (minsToMidnight === 0 ? currentHour : currentHour + 1)) * ONE_HOUR;
+        const hoursTillMidnight =
+          (24 - (minsToMidnight === 0 ? currentHour : currentHour + 1)) *
+          ONE_HOUR;
         const totalTimeToday = hoursTillMidnight + minsToMidnight;
 
-        const hoursTillTomorrow = (parsedHour * ONE_HOUR);
-        const minutesTillTomorrow = (parsedMinutes * ONE_MIN);
+        const hoursTillTomorrow = parsedHour * ONE_HOUR;
+        const minutesTillTomorrow = parsedMinutes * ONE_MIN;
         const totalTimeTomorrow = hoursTillTomorrow + minutesTillTomorrow;
 
         return totalTimeToday + totalTimeTomorrow;
@@ -66,16 +74,21 @@ export default {
       // If its morning, check if the time is past
       if (currentHour < parsedHour) {
         const hourDiff = (parsedHour - currentHour) * ONE_HOUR;
-        return (currentHour + hourDiff + (parsedMinutes * ONE_MIN)) - (currentMinute * ONE_MIN);
+        return (
+          currentHour +
+          hourDiff +
+          parsedMinutes * ONE_MIN -
+          currentMinute * ONE_MIN
+        );
       } else if (currentHour === parsedHour) {
         if (parsedMinutes > currentMinute) {
           return (parsedMinutes - currentMinute) * ONE_MIN;
         } else {
-          return getTimeTillTomorrow() - (currentMinute * ONE_MIN);
+          return getTimeTillTomorrow() - currentMinute * ONE_MIN;
         }
       } else {
         return getTimeTillTomorrow();
       }
-    }
-  }
-} as {[key:string]: TimeDelineation}
+    },
+  },
+} as { [key: string]: TimeDelineation };

@@ -4,7 +4,7 @@
   "description": "Convert descriptions of time into milliseconds",
   "main": "index.js",
   "scripts": {
-    "lint": "prettier --check .",
+    "lint": "prettier --write **/*.{ts,json,md}",
     "package:benchmark": "npm run scripts:run benchmark",
     "package:build": "tsup --format cjs,esm --dts && npm run package:prepare",
     "package:prepare": "npm run scripts:run prepare-dist",

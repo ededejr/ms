@@ -1,4 +1,4 @@
-import TimeResolvers, { TimeDelineation } from './resolvers';
+import TimeResolvers, { TimeDelineation } from "./resolvers";
 
 class TimeStringRegex {
   private rgx: RegExp;
@@ -12,7 +12,7 @@ class TimeStringRegex {
   /**
    * Get the Javascript `RegexExp` this wraps.
    */
-  get regex () {
+  get regex() {
     return this.rgx;
   }
 
@@ -21,8 +21,8 @@ class TimeStringRegex {
    *
    * @param time The time string to test.
    */
-  matches (time: string) {
-    time = time.trim().replace(/ /g, '');
+  matches(time: string) {
+    time = time.trim().replace(/ /g, "");
     return this.rgx.test(time);
   }
 
@@ -36,7 +36,7 @@ class TimeStringRegex {
    *
    * this.convertStringToMilliseconds('30mins') => 1800000
    */
-  convertStringToMilliseconds (time: string) {
+  convertStringToMilliseconds(time: string) {
     if (!this.matches(time)) {
       return;
     }
@@ -48,13 +48,13 @@ class TimeStringRegex {
       let totalInMs = 0;
 
       for (const groupName of Object.keys(matchGroups)) {
-        const resolver = this.resolvers.find(g => g.name === groupName);
+        const resolver = this.resolvers.find((g) => g.name === groupName);
         const value = matchGroups[groupName];
 
         if (value && resolver) {
           const result = resolver.resolve(+value, value, matchGroups) || 0;
 
-          if (resolver.name === 'indicator') {
+          if (resolver.name === "indicator") {
             return result;
           }
 
@@ -79,12 +79,9 @@ class TimeStringRegex {
  *
  * @param time The time string to check.
  */
-export const SecsRGX = new TimeStringRegex(
-  /^(?<secs>\d+)s(?:(ec|econd))?s?$/,
-  [
-    TimeResolvers.secs
-  ]
-);
+export const SecsRGX = new TimeStringRegex(/^(?<secs>\d+)s(?:(ec|econd))?s?$/, [
+  TimeResolvers.secs,
+]);
 
 /**
  * Determine if a string matches the format minutes format.
@@ -98,12 +95,9 @@ export const SecsRGX = new TimeStringRegex(
  *
  * @param time The time string to check.
  */
-export const MinsRGX = new TimeStringRegex(
-  /^(?<mins>\d{1,3})min(?:ute)?s?$/,
-  [
-    TimeResolvers.mins
-  ]
-);
+export const MinsRGX = new TimeStringRegex(/^(?<mins>\d{1,3})min(?:ute)?s?$/, [
+  TimeResolvers.mins,
+]);
 
 /**
  * Determine if a string matches the format an hour-minute format.
@@ -121,10 +115,7 @@ export const MinsRGX = new TimeStringRegex(
  */
 export const HoursRGX = new TimeStringRegex(
   /(^(?<hrs>\d{1,2}) ?hrs?) *((?<mins>[0-5]?[0-9]) *min(?:ute)?s?)?$/,
-  [
-    TimeResolvers.hrs,
-    TimeResolvers.mins,
-  ]
+  [TimeResolvers.hrs, TimeResolvers.mins]
 );
 
 /**
@@ -135,11 +126,7 @@ export const HoursRGX = new TimeStringRegex(
  */
 export const AmPmRGX = new TimeStringRegex(
   /^(?<hrs>[0-1]?[0-9])(?:\:(?<mins>[0-5][0-9]))? *(?<indicator>AM|am|PM|pm)$/,
-  [
-    TimeResolvers.hrs,
-    TimeResolvers.mins,
-    TimeResolvers.indicator
-  ]
+  [TimeResolvers.hrs, TimeResolvers.mins, TimeResolvers.indicator]
 );
 
 /**
@@ -155,9 +142,5 @@ export const AmPmRGX = new TimeStringRegex(
  */
 export const DaysRGX = new TimeStringRegex(
   /^(?<days>\d+) *days?(?: *(?:(?<hrs>\d{1,2}) *hrs)? *(?:(?<mins>[0-5]?[0-9]) *min(?:ute)?s?)?)?$/i,
-  [
-    TimeResolvers.days,
-    TimeResolvers.hrs,
-    TimeResolvers.mins
-  ]
+  [TimeResolvers.days, TimeResolvers.hrs, TimeResolvers.mins]
 );

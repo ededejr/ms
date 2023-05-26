@@ -6,7 +6,8 @@ import { AmPmRGX, MinsRGX, HoursRGX, DaysRGX, SecsRGX } from "./regexes";
  * @param timeString The string to convert to milliseconds.
  */
 export function ms(str: TemplateStringsArray | string): number | undefined {
-  const isTemplateString = Array.isArray(str) && str.length === 1 && typeof str[0] === "string";
+  const isTemplateString =
+    Array.isArray(str) && str.length === 1 && typeof str[0] === "string";
   const isString = typeof str === "string";
 
   if (!(isTemplateString || isString)) {
@@ -21,12 +22,13 @@ export function ms(str: TemplateStringsArray | string): number | undefined {
     input = str[0];
   }
 
-  input = input.trim().replace(/ /g, '');
+  input = input.trim().replace(/ /g, "");
 
   if (AmPmRGX.matches(input)) {
     return AmPmRGX.convertStringToMilliseconds(input);
   }
 
   return [SecsRGX, MinsRGX, HoursRGX, DaysRGX]
-    .find(r => r.matches(input))?.convertStringToMilliseconds(input);
+    .find((r) => r.matches(input))
+    ?.convertStringToMilliseconds(input);
 }
