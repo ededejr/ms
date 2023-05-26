@@ -1,4 +1,5 @@
-const ONE_MIN = 60 * 1000;
+const ONE_SEC = 1000;
+const ONE_MIN = 60 * ONE_SEC;
 const ONE_HOUR = 60 * ONE_MIN;
 const ONE_DAY = 24 * ONE_HOUR;
 
@@ -8,6 +9,10 @@ export interface TimeDelineation {
 }
 
 export default {
+  secs: {
+    name: 'secs',
+    resolve: (value) => value * ONE_SEC
+  },
   mins: {
     name: 'mins',
     resolve: (value) => value * ONE_MIN

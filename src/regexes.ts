@@ -68,6 +68,25 @@ class TimeStringRegex {
 }
 
 /**
+ * Determine if a string matches the format seconds format.
+ *
+ * @example
+ * SecsRGX('20s') => true
+ * SecsRGX('300seconds`) => true
+ * SecsRGX('3000secs') => false
+ * SecsRGX('1second') => true
+ * SecsRGX('1sec') => true
+ *
+ * @param time The time string to check.
+ */
+export const SecsRGX = new TimeStringRegex(
+  /^(?<secs>\d+)s(?:(ec|econd))?s?$/,
+  [
+    TimeResolvers.secs
+  ]
+);
+
+/**
  * Determine if a string matches the format minutes format.
  *
  * @example
