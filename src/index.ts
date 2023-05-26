@@ -3,7 +3,7 @@ import { AmPmRGX, MinsRGX, HoursRGX, DaysRGX, SecsRGX } from "./regexes";
 /**
  * Converts a time string such as "2hrs 30mins" to MS;
  *
- * @param timeString The string to convert to milliseconds.
+ * @param str The string to convert to milliseconds.
  */
 export function ms(str: TemplateStringsArray | string): number | undefined {
   const isTemplateString =
