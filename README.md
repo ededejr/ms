@@ -2,6 +2,12 @@
 
 a utility for converting time descriptions (i.e "2hrs 30mins") into milliseconds.
 
+### Installation
+
+```
+npm install @ededejr/ms
+```
+
 ### Usage
 
 ```ts
