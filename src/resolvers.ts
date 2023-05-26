@@ -2,6 +2,8 @@ const ONE_SEC = 1000;
 const ONE_MIN = 60 * ONE_SEC;
 const ONE_HOUR = 60 * ONE_MIN;
 const ONE_DAY = 24 * ONE_HOUR;
+const ONE_WEEK = 7 * ONE_DAY;
+const ONE_YEAR = ONE_WEEK * 52;
 
 export interface TimeDelineation {
   name: string;
@@ -13,6 +15,10 @@ export interface TimeDelineation {
 }
 
 export default {
+  ms: {
+    name: "ms",
+    resolve: (value) => value,
+  },
   secs: {
     name: "secs",
     resolve: (value) => value * ONE_SEC,
@@ -28,6 +34,14 @@ export default {
   days: {
     name: "days",
     resolve: (value) => value * ONE_DAY,
+  },
+  wks: {
+    name: "wks",
+    resolve: (value) => value * ONE_WEEK,
+  },
+  yrs: {
+    name: "yrs",
+    resolve: (value) => value * ONE_YEAR,
   },
   indicator: {
     name: "indicator",

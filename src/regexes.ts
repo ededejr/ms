@@ -130,17 +130,19 @@ export const AmPmRGX = new TimeStringRegex(
 );
 
 /**
- * Check if a time string matches a days timer format.
- *
- * @param time The time string to check.
- *
- * @example
- * DaysRGX.matches('2days') => true
- * DaysRGX.matches('2days 4hrs') => true
- * DaysRGX.matches('2days 4hrs 30mins') => true
- * DaysRGX.matches('2days 30mins') => true
+ * Parse and extract years, weeks, days, hours, minutes, seconds,
+ * and milliseconds from a time string.
+ * 
+ * @param time The time string to check. 
  */
-export const DaysRGX = new TimeStringRegex(
-  /^(?<days>\d+) *days?(?: *(?:(?<hrs>\d{1,2}) *hrs)? *(?:(?<mins>[0-5]?[0-9]) *min(?:ute)?s?)?)?$/i,
-  [TimeResolvers.days, TimeResolvers.hrs, TimeResolvers.mins]
+export const StandardRGX = new TimeStringRegex(
+  /^(?:(?<yrs>\d+)\s*y(?:ears?)?)?\s*(?:(?<wks>\d+)\s*w(?:eeks?|ks)?)?\s*(?:(?<days>\d+)\s*d(?:ays?)?)?\s*(?:(?<hrs>\d+)\s*h(?:ours?)?)?\s*(?:(?<mins>\d+)\s*m(?:in(?:ute)?s?)?)?\s*(?:(?<secs>\d+)\s*s(?:ec(?:ond)?s?)?)?\s*(?:(?<ms>\d+)\s*m(?:ill(?:i)?second)?s?)?$/i,
+  [
+    TimeResolvers.yrs,
+    TimeResolvers.wks,
+    TimeResolvers.days,
+    TimeResolvers.hrs,
+    TimeResolvers.mins,
+    TimeResolvers.secs,
+  ]
 );
