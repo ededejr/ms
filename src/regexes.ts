@@ -73,7 +73,7 @@ class TimeStringRegex {
  * @example
  * SecsRGX('20s') => true
  * SecsRGX('300seconds`) => true
- * SecsRGX('3000secs') => false
+ * SecsRGX('3000secs') => true
  * SecsRGX('1second') => true
  * SecsRGX('1sec') => true
  *
